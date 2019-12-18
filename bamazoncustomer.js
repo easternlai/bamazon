@@ -1,6 +1,5 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-var currentInventory = [];
 var connectionParameters = {
     host: "localhost",
     port: 3306,
@@ -13,39 +12,42 @@ var connection = mysql.createConnection(connectionParameters);
 
 connection.connect(function(err) {
     if(err) throw err;
-    updateAndDisplay();
     startPrompt();
 });
 
 
-function updateAndDisplay(){
-    console.log("Displaying all products:...");
-    connection.query("SELECT * FROM products", function(err, res){
-        currentInventory = [];
-        for (i = 0; i < res.length; i++){
-            console.log (res[i].item_id, ": ",res[i].product_name," - ", res[i].price);
-            currentInventory.push(res[i].item_id + ": " + res[i].product_name);
-        }
-    });
-}
+
 
 
 function startPrompt(){
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "userItem",
-            message: "Which product do you want to buy?"
-            
-        },
-        {
-            type: "input",
-            name: "userQuantity",
-            message: "How many do you want to purchase?"
+
+    console.log("Displaying all products:... \n");
+    var currentInventory = [];
+    connection.query("SELECT * FROM products", function(err, res){
+        
+        for (i = 0; i < res.length; i++){
+            currentInventory.push(res[i].product_name);
         }
-    ]).then(function(inquireResponse){
-        console.log(testArr);
-        console.log(currentInventory);
+        console.log("-----------------------------");
+    
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "userItem",
+                choices: currentInventory,
+                message: "Which product do you want to buy?"
+                
+            },
+            {
+                type: "input",
+                name: "userQuantity",
+                message: "How many do you want to purchase?"
+            }
+        ]).then(function(inquireResponse){
+            console.log(inquireResponse.userItem);
+
+
+        });
     });
 }
 
