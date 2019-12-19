@@ -13,15 +13,15 @@
 
 This is a node program presents a user with a list of items for purchase and their prices.  The user selects which Item they would like to purchase and is either told their total cost, or that the purchase could not be made because their in insufficient quantity.  
 
-![success](https://github.com/easternlai/LIRI-Bot/blob/master/img/concertthis.JPG)
+![success](https://github.com/easternlai/bamazon/blob/master/img/success.JPG?raw=true)
 
 In this screenshot you can see that the user purchases an item and is returned their total cost.
 
-![fail](https://github.com/easternlai/LIRI-Bot/blob/master/img/moviethis.JPG)
+![fail](https://github.com/easternlai/bamazon/blob/master/img/fail.JPG?raw=true)
 
 In this example the user is not able to purchase the item because there is not enough inventory to fulfill their order. 
 
-![ran-out](https://github.com/easternlai/LIRI-Bot/blob/master/img/spotify.JPG)
+![ran-out](https://github.com/easternlai/bamazon/blob/master/img/inventoryupdate.JPG?raw=true)
 
 In this final example, notice tha the user is first able to place an order, but when the program is run again and the user tries to place a larger order, the quantity has updated reflecting the previous transaction.  
 
